@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+  <title>RPPP Homework</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" asp-append-version="true">
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/84b557429a.js" asp-append-version="true" crossorigin="anonymous"></script>
+  @RenderSection("styles", required: false)
+</head>
+<body>
+  <partial name="_Nav" />
+  <partial name="_Notification"/>
+
+  <div class="container body-container">
+    @RenderBody()
+  </div>
+
+  <partial name="_DeleteModal"/>
+
+  <script>
+    window.applicationBaseUrl = '@Url.Content("~/")';
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" asp-append-version="true"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js" asp-append-version="true"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" asp-append-version="true"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" asp-append-version="true"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+
+  @RenderSection("scripts", required: false)
+</body>
+</html>

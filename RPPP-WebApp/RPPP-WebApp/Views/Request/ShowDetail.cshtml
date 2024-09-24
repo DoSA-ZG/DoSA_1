@@ -1,0 +1,93 @@
+@model RPPP_WebApp.ViewModels.RequestViewModel
+
+  @{
+    Dictionary<string, int> RequestColumns = new Dictionary<string, int> {
+        { "Id", -1},
+        { "Amount", -1 },
+        { "Needed Species Name", -1},
+        { "Needed Species Nutritional Values", -1},
+        { "Operation IDs", -1 },
+    };
+  }
+  <div class="elem-header">
+    <h1>Request</h1>
+    <a class="btn edit-md" asp-action="Edit" asp-route-id="@Model.RequestId" title="Edit"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+  </div>
+
+  <table class="table table-sm table-striped table-hover">
+    <thead>
+      <tr>
+        @foreach (var oneColumn in RequestColumns) {
+          <th>
+            <div class="column-header">
+                <span class="column-name">
+                    @oneColumn.Key
+                </span>
+            </div>
+          </th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+       @{
+        var operationStr = string.Join(", ", Model.Operations.Select(i => i.OperationId));
+        }
+        <tr>
+          <td class="text-left">@Model.RequestId</td>
+          <td class="text-left">@Model.Amount</td>
+          <td class="text-left">@Model.NeededSpecies_Name</td>
+          <td class="text-left">@Model.NeededSpecies_NutritionalValues</td>
+          <td class="text-left">@(operationStr.Length > 0 ? operationStr : "-")</td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  @{
+    Dictionary<string, int> OrderColumns = new Dictionary<string, int> {  
+          { "Operation ID", -1 },
+          { "Operation Type Name", -1 },
+          { "Cost", -1 },
+          { "Status", -1},
+          { "Date", -1},
+          { "Amount", -1 },
+          { "Plant ID", -1 },
+    };
+  }
+
+  <h1>Operations</h1>
+  @if (Model.Operations.Count() > 0) {
+    <table class="table table-sm table-striped table-hover">
+      <thead>
+        <tr>
+          @foreach (var oneColumn in OrderColumns) {
+            <th>
+              <div class="column-header">
+                  <span class="column-name">
+                      @oneColumn.Key
+                  </span>
+              </div>
+            </th>
+          }
+        </tr>
+      </thead>
+
+      <tbody>
+        @foreach (var operation in Model.Operations)
+        {
+          <tr>
+            <td class="text-left">@operation.OperationId</td>
+            <td class="text-left">@operation.OperationTypeName</td>
+            <td class="text-left">@operation.Cost</td>
+            <td class="text-left">@operation.Status</td>
+            <td class="text-left">@operation.Date</td>
+            <td class="text-left">@operation.Amount</td>
+            <td class="text-left">@operation.PlantId</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } else {
+      <p>No data available.</p>
+  }

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+  <title>RPPP Homework</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/site.css" asp-append-version="true" />
+  <script src="https://kit.fontawesome.com/84b557429a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <partial name="_Nav" />
+  <div id="menu">
+    <div id="projectName">RPPP12</div>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">Egor Shevtsov</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <div class="dropdown-content hidden">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">Jan Odważny</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <div class="dropdown-content hidden">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">David Bosy</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+
+        <div class="dropdown-content hidden">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">Taylan Ünver</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <div class="dropdown-content hidden">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="table">
+        <div id="toolbar">
+            <button type="button" class="btn btn-create" id="create" data-toggle="modal"  data-action="create" data-target="#changeModal">
+                Create
+            </button>
+            <button type="button" class="btn btn-reset-filters" id="reset-filters" data-action="reset-filters'">
+                Reset filters
+            </button>
+        </div>
+        <table data-entity="entity_name">
+            <tr>
+                <th data-column-name="company">
+                    <div class="column-header">
+                        <span class="column-name">Company</span>
+                        <span class="sorting-icons">
+                            <i class="fa-solid fa-caret-up fa-xs asc"></i>
+                            <i class="fa-solid fa-caret-down fa-xs desc"></i>
+                        </span>
+                    </div>
+                </th>
+                <th data-column-name="contact">
+                    <div class="column-header">
+                        <span class="column-name">Contact</span>
+                        <span class="sorting-icons">
+                            <i class="fa-solid fa-caret-up fa-xs asc"></i>
+                            <i class="fa-solid fa-caret-down fa-xs desc"></i>
+                        </span>
+                    </div>
+                </th>
+                <th data-column-name="country">
+                    <div class="column-header">
+                        <span class="column-name">Country</span>
+                        <span class="sorting-icons">
+                            <i class="fa-solid fa-caret-up fa-xs asc"></i>
+                            <i class="fa-solid fa-caret-down fa-xs desc"></i>
+                        </span>
+                    </div>
+                </th>
+                <th data-column-name="phone">
+                    <div class="column-header">
+                        <span class="column-name">Phone</span>
+                        <span class="sorting-icons">
+                            <i class="fa-solid fa-caret-up fa-xs asc"></i>
+                            <i class="fa-solid fa-caret-down fa-xs desc"></i>
+                        </span>
+                    </div>
+                </th>
+                <th data-column-name="email">
+                    <div class="column-header">
+                        <span class="column-name">Email</span>
+                        <span class="sorting-icons">
+                            <i class="fa-solid fa-caret-up fa-xs asc"></i>
+                            <i class="fa-solid fa-caret-down fa-xs desc"></i>
+                        </span>
+                    </div>
+                </th>
+                <th data-column-name="date">
+                    <div class="column-header">
+                        <span class="column-name">Date</span>
+                        <span class="sorting-icons">
+                            <i class="fa-solid fa-caret-up fa-xs asc"></i>
+                            <i class="fa-solid fa-caret-down fa-xs desc"></i>
+                        </span>
+                    </div>
+                </th>
+                <th data-column-name="employed">
+                    <div class="column-header">
+                        <span class="column-name">Employed</span>
+                        <span class="sorting-icons">
+                            <i class="fa-solid fa-caret-up fa-xs asc"></i>
+                            <i class="fa-solid fa-caret-down fa-xs descs"></i>
+                        </span>
+                    </div>
+                </th>
+                <th></th>
+            </tr>
+            <tr data-element-id="15">
+                <td data-name="company">Alfreds Futterkiste</td>
+                <td data-name="contact">167</td>
+                <td data-name="country">Germany</td>
+                <td data-name="phone">Alfreds Futterkiste</td>
+                <td data-name="email">aux@yahoo.com</td>
+                <td data-name="date">03/24/2015</td>
+                <td data-name="employed">True</td>
+                <td>
+                    <button type="button" class="btn btn-primary edit" data-toggle="modal" data-action="edit" data-target="#changeModal">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary delete" data-toggle="modal"  data-action="delete" data-target="#deleteModal">
+                        <i class="fa-solid fa-xmark fa-lg"></i>
+                    </button>
+                </td>
+            </tr>
+            <tr data-element-id="18">
+                <td data-name="company">Centro comercial Moctezuma</td>
+                <td data-name="contact">267</td>
+                <td data-name="country">Mexico</td>
+                <td data-name="phone">Alfreds Futterkiste</td>
+                <td data-name="email">sth@gmail.com</td>
+                <td data-name="date">08/11/2014</td>
+                <td data-name="employed">False</td>
+                <td>
+                    <button type="button" class="btn btn-primary edit" data-toggle="modal" data-action="edit" data-target="#changeModal">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary delete" data-toggle="modal" data-action="delete" data-target="#deleteModal">
+                        <i class="fa-solid fa-xmark fa-lg"></i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <div id="paging" class="hidden">
+            <span id="prev" data-page=""><i class="fa-solid fa-arrow-left"></i></span>
+            <span id="minPage" data-page=""></span>
+            <span id="minGap">..</span>
+            <span data-page=""></span>
+            <span data-page="" id="current"></span>
+            <span data-page=""></span>
+            <span id="maxGap">..</span>
+            <span id="maxPage" data-page=""></span>
+            <span id="next" data-page=""><i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+    <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="changeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title"><span id="title-action"></span><span id="title-entity">Entity Name</span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form id="modal-form">
+                <div class="modal-body">
+                    <div class="modal-field required">
+                        <label for="company">Company</label>
+                        <input required type="text" name="company" id="company"/>
+                    </div>
+                    <div class="modal-field ">
+                        <label for="contact">Contact</label>
+                        <input type="number" name="contact" id="contact"/>
+                    </div>
+                    <div class="modal-field">
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone" id="phone"/>
+                    </div>
+                    <div class="modal-field required">
+                        <label for="country">Country</label>
+                        <select name="country" id="country" required>
+                            <option hidden disabled selected value> -- select an option -- </option> <!-- hidden only in case of the field being required -->
+                            <option value="Mexico">Mexico</option>
+                            <option value="France">France</option>
+                            <option value="England">England</option>
+                            <option value="Italy">Italy</option>
+                            <option value="Germany">Germany</option>
+                        </select>
+                    </div>
+                    <div class="modal-field">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email"/>
+                    </div>
+                    <div class="modal-field required">
+                        <label for="date">Date</label>
+                        <input type="date" required name="date" id="date"/>
+                    </div>
+                    <div class="modal-field required">
+                        <label for="employed">Employed</label>
+                        <select name="employed" id="employed" required ="country">
+                            <option hidden disabled selected value> -- select an option -- </option> <!-- hidden only in case of the field being required -->
+                            <option value="True">True</option>
+                            <option value="False">False</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title"><span id="title-action">Delete</span><span id="title-entity">Entity Name</span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body modal-body-delete">
+                Are you sure that you want to delete the element?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    </div>
+
+  <!-- <script>
+    window.applicationBaseUrl = '@Url.Content("~/")';
+  </script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="./js/site.js" asp-append-version="true"></script>
+</body>
+</html>

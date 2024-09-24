@@ -1,0 +1,29 @@
+@model RPPP_WebApp.ViewModels.RequestViewModel
+
+<form asp-controller="Request" asp-action="Create" method="post">
+  <div class="elem-header">
+    <h2>Add a new request</h2>
+    <div class="text-center action-buttons">
+      <a asp-action="Index" class="btn btn-secondary" title="Return to the list"><i class="fa-solid fa-circle-left"></i></a>
+      <button class="btn btn-primary" type="submit" title="Save"><i class="fa-solid fa-floppy-disk"></i></button>
+    </div>
+  </div>
+  <div class="alter-fields">
+    <partial name="_CommonFields" />
+  </div>
+
+   <partial name="Operations" model="Model.Operations" />
+</form>
+
+<partial name="NewOperationsTemplate" />
+
+@section styles {
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+
+@section scripts {
+  <partial name="IncludeValidation" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="~/js/people.js" asp-append-version="true"></script>
+  <script src="~/js/autocomplete.js" asp-append-version="true"></script>
+}

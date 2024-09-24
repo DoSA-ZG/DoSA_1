@@ -1,0 +1,76 @@
+@model IEnumerable<RPPP_WebApp.ViewModels.PlantViewModel>
+<table class="table table-striped" id="table-plant">
+    <thead>
+        <tr>
+           @{
+                Dictionary<string, int> PlantColumns = new Dictionary<string, int> {
+                    { "Species", -1 },
+                    { "Nutritional values", -1},
+                    { "Purpose", -1 },
+                    { "Quantity", -1 }
+                };
+            }
+            @foreach (var oneColumn in PlantColumns) {
+                <th>
+                <div class="column-header">
+                    <span class="column-name">
+                        @oneColumn.Key
+                    </span>
+                </div>
+                </th>
+            } 
+            <th class="actions"></th>       
+        </tr>
+    </thead>
+    <tbody>      
+        @foreach(var plant in Model)
+        {           
+            <tr>
+                <td class="text-left col-sm-4">
+                    <input type="hidden" name="Plants.Index" value="@plant.PlantId" />
+                    <input type="hidden" name="Plants[@plant.PlantId].PlantId" value="@plant.PlantId" />
+                    <input type="hidden" name="Plants[@plant.PlantId].SpeciesId" value="@plant.SpeciesId" />
+                    <input type="hidden" name="Plants[@plant.PlantId].Name" value="@plant.Name" />
+                    @plant.Name                                 
+                </td>
+                <td class="text-center col-sm-1">
+                    <input type="hidden" name="Plants[@plant.PlantId].NutritionalValues" value="@plant.NutritionalValues" />
+                    @plant.NutritionalValues
+                </td>
+                <td class="text-center col-sm-1">
+                    <select class="form-select form-control" name="Plants[@plant.PlantId].PurposeId" asp-for="@plant.PurposeId" asp-items="@ViewBag.Purposes">
+                        <option disabled selected value="">Choose purpose</option>
+                    </select>
+                </td>
+                <td class="text-right col-sm-3">
+                     <input min="1" name="Plants[@plant.PlantId].Quantity" class="form-control" asp-for="@plant.Quantity"/>
+                </td>
+                <td class="actions">
+                    <button class="btn btn-sm delete-row" title="Remove"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                </td>               
+            </tr>
+        }        
+        <tr>
+            <td>
+                <input id="plant-id" type="hidden" readonly="readonly" />
+                <input id="plant-species" type="hidden" data-autocomplete-placeholder="plants" readonly="readonly"/>
+                <input id="plant-name" type="text" data-autocomplete="plants" />                
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="plant-nv" type="text" data-autocomplete-placeholder-nv="plants" readonly="readonly"/>
+            </td>
+            <td class="text-right col-sm-2">
+                <select id="plant-purpose" class="form-select form-control" asp-items="@ViewBag.Purposes">
+                    <option disabled selected value="">Choose purpose</option>
+                </select>
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="plant-quantity" type="text"/> 
+            </td>
+            <td class="actions">
+                <button id="plant-add" class="btn btn-sm add-row" title="Add"><i class="fas fa-circle-plus fa-lg"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

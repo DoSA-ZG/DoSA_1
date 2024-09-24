@@ -1,0 +1,18 @@
+@model RPPP_WebApp.ViewModels.RequestViewModel
+
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="Amount" class="form-label"></label>
+    <input asp-for="Amount" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="Amount" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="NeededSpeciesId" class="form-label"></label>
+    <select class="form-select field" asp-for="NeededSpeciesId" asp-items="ViewBag.Species">
+      <option disabled selected value="">Choose an species</option>
+    </select>
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="NeededSpeciesId" class="text-danger"></span></div>
+</div>

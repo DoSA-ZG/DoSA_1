@@ -1,0 +1,96 @@
+@model RPPP_WebApp.ViewModels.PlotViewModel
+
+  @{
+    Dictionary<string, int> PlotColumns = new Dictionary<string, int> {
+        { "Id", -1},
+        { "Size", -1 },
+        { "Light intensity", -1 },
+        { "Coord X", -1 },
+        { "Coord Y", -1 },
+        { "Soil type", -1 },
+        { "Owner", -1 },
+        { "Infrastr.", -1},
+        { "Leasings", -1}
+    };
+  }
+  <div class="elem-header">
+    <h1>Plot</h1>
+    <a class="btn edit-md" asp-action="Edit" asp-route-id="@Model.PlotId" title="Edit"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+  </div>
+
+  <table class="table table-sm table-striped table-hover">
+    <thead>
+      <tr>
+        @foreach (var oneColumn in PlotColumns) {
+          <th>
+            <div class="column-header">
+                <span class="column-name">
+                    @oneColumn.Key
+                </span>
+            </div>
+          </th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+       @{
+        var infraStr = string.Join(", ", Model.Infrastructures.Select(i => i.Name));
+        var leasingsStr = string.Join(", ", Model.Leasings.Select(i => i.Id));
+        }
+        <tr>
+          <td class="text-left">@Model.PlotId</td>
+          <td class="text-left">@Model.Size</td>
+          <td class="text-left">@Model.LightIntensity</td>
+          <td class="text-left">@Model.CoordX</td>
+          <td class="text-left">@Model.CoordY</td>
+          <td class="text-left">@Model.SoilName</td>
+          <td class="text-left">@Model.OwnerName</td>
+          <td class="text-left">@(infraStr.Length > 0 ? infraStr : "-")</td>
+          <td class="text-left">@(leasingsStr.Length > 0 ? leasingsStr : "-")</td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  @{
+    Dictionary<string, int> PlantColumns = new Dictionary<string, int> {
+        { "Species", -1 },
+        { "Nutritional values", -1},
+        { "Purpose", -1 },
+        { "Quantity", -1 }
+    };
+  }
+
+  <h1>Plants</h1>
+  @if (Model.Plants.Count() > 0) {
+    <table class="table table-sm table-striped table-hover">
+      <thead>
+        <tr>
+          @foreach (var oneColumn in PlantColumns) {
+            <th>
+              <div class="column-header">
+                  <span class="column-name">
+                      @oneColumn.Key
+                  </span>
+              </div>
+            </th>
+          }
+        </tr>
+      </thead>
+
+      <tbody>
+        @foreach (var plant in Model.Plants)
+        {
+          <tr>
+            <td class="text-left">@plant.Name</td>
+            <td class="text-left">@plant.NutritionalValues</td>
+            <td class="text-left">@plant.PurposeName</td>
+            <td class="text-left">@plant.Quantity</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } else {
+      <p>No data available.</p>
+  }

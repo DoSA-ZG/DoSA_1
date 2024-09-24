@@ -1,0 +1,145 @@
+@model RPPP_WebApp.ViewModels.PlotsViewModel
+
+
+@if (Model.Plots.Any()) {
+  <div id="toolbar">
+      <a class="btn btn-primary" asp-action="Create" title="Create new plot"><i class="fa-solid fa-square-plus fa-xl"></i></a>
+      <a class="btn btn-secondary" asp-route-page="@Model.PagingInfo.CurrentPage" asp-action="Index" title="Reset sorting"><i class="fa-solid fa-filter-circle-xmark fa-xl"></i></a>
+      <a class="btn btn-primary" target="_blank" asp-controller="Reports" asp-action="Plots" title="Generate PDF report"><i class="fa-solid fa-file-pdf fa-lg"></i></a>
+  </div>
+
+  Dictionary<string, int> columns = new Dictionary<string, int>
+  {
+      { "Id", 1}, //Otherwise there is no identifier whatsoever
+      { "Size", 2 },
+      { "Light intensity", 3 },
+      { "Coord X", 4 },
+      { "Coord Y", 5 },
+      { "Soil type", 6 },
+      { "Owner", 7 },
+  };
+        
+  <table class="table table-sm table-striped table-hover">
+    <thead>
+      <tr>
+        @foreach (var oneColumn in columns) {
+          bool isColumnSelected = Model.PagingInfo.Sort == oneColumn.Value;
+          bool isAscSelected = isColumnSelected && Model.PagingInfo.Ascending;
+          bool isDescSelected = isColumnSelected && !Model.PagingInfo.Ascending;
+
+          <th>
+            <div class="column-header">
+                <span class="column-name">
+                    @oneColumn.Key
+                </span>
+                @if (oneColumn.Value != -1) {
+                  <span class="sorting-icons">
+                      <a class=@(isAscSelected ? "selected" : "")
+                        asp-route-sort=@(!isAscSelected ? oneColumn.Value : null) 
+                        asp-route-page="@Model.PagingInfo.CurrentPage"
+                        asp-route-ascending=@(!isAscSelected ? true : null)>
+                        <i class="fa-solid fa-caret-up fa-xs"></i>
+                      </a>
+                      <a class=@(isDescSelected ? "selected" : "")
+                        asp-route-sort=@(!isDescSelected ? oneColumn.Value : null)
+                        asp-route-page="@Model.PagingInfo.CurrentPage"
+                        asp-route-ascending=@(!isDescSelected ? false : null)>
+                        <i class="fa-solid fa-caret-down fa-xs"></i>
+                      </a>
+                  </span>
+                }
+            </div>
+          </th>
+        }
+        <th class="actions"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @foreach (var plot in Model.Plots)
+      {
+        <tr>
+          <td class="text-left">@plot.PlotId</td>
+          <td class="text-left">@plot.Size</td>
+          <td class="text-left">@plot.LightIntensity</td>
+          <td class="text-left">@plot.CoordX</td>
+          <td class="text-left">@plot.CoordY</td>
+          <td class="text-left">@plot.SoilName</td>
+          <td class="text-left">@plot.OwnerName</td>
+          <td class="actions">
+            <div class="show-detail">
+              <a asp-controller="Plots" asp-action="ShowDetail"
+                asp-route-id="@plot.PlotId"
+                asp-route-page="@Model.PagingInfo.CurrentPage"
+                asp-route-sort="@Model.PagingInfo.Sort"
+                asp-route-ascending="@Model.PagingInfo.Ascending"
+                class="btn btn-sm edit" title="Details"><i class="fa-solid fa-table-list"></i></a>
+            </div>
+            <div class="change">
+              <a asp-controller="Plots" asp-action="Edit"
+                asp-route-id="@plot.PlotId"
+                asp-route-page="@Model.PagingInfo.CurrentPage"
+                asp-route-sort="@Model.PagingInfo.Sort"
+                asp-route-ascending="@Model.PagingInfo.Ascending"
+                class="btn btn-sm edit" title="Edit"><i class="fa-solid fa-pen"></i></a>
+
+              <form asp-controller="Plots" asp-action="Delete" asp-route-id="@plot.PlotId" method="post"
+                    asp-route-page="@Model.PagingInfo.CurrentPage"
+                    asp-route-sort="@Model.PagingInfo.Sort"
+                    asp-route-ascending="@Model.PagingInfo.Ascending">
+                <input type="hidden" name="_method" value="DELETE" />
+                <button type="submit" class="btn btn-sm btn-danger delete" data-toggle="modal" data-action="delete" data-target="#deleteModal" title="Delete"><i class="fa-solid fa-xmark fa-lg"></i></button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <pager page-info="@Model.PagingInfo" page-action="Index" page-title="Enter page"class="float-end"></pager>
+  
+  @section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+
+    <script>
+      function confirmAndDelete(plotId) {
+          if (confirm('Are you sure you want to delete this plot?')) {
+              deletePlot(plotId);
+          }
+      }
+
+      function deletePlot(plotId) {
+          fetch('/Plots/Delete/' + plotId, {
+              method: 'DELETE',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  page: 1,  // Set the actual page value
+                  sort: 1,  // Set the actual sort value
+                  ascending: true  // Set the actual ascending value
+              })
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              // Handle success, if needed
+              console.log(data);
+          })
+          .catch(error => {
+              // Handle error, if needed
+              console.error('There was a problem with the fetch operation:', error);
+          });
+    }
+</script>
+  }
+
+} else {
+     <p>No data available.</p>
+}

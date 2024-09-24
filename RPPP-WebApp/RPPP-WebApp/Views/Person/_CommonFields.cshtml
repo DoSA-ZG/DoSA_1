@@ -1,0 +1,41 @@
+@model RPPP_WebApp.ViewModels.PersonViewModel
+
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="Name" class="form-label"></label>
+    <input asp-for="Name" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="Name" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="PhoneNumber" class="form-label"></label>
+    <input asp-for="PhoneNumber" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="PhoneNumber" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="Email" class="form-label"></label>
+    <input asp-for="Email" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="Email" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="RoleName" class="form-label"></label>
+    <select class="form-select field" asp-for="RoleName" asp-items="ViewBag.Roles">
+      <option disabled selected value="">Choose a role</option>
+    </select>
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="RoleName" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <input type="hidden" asp-for="AddressId" class="form-control field" />
+  </div>
+</div><div class="mb-3 field-box">
+  <div class="field-data">
+    <input type="hidden" asp-for="RoleId" class="form-control field" />
+  </div>
+</div>

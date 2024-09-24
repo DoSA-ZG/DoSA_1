@@ -1,0 +1,67 @@
+@model RPPP_WebApp.ViewModels.SpeciesPluralViewModel
+@using System.ComponentModel.DataAnnotations
+@using System.ComponentModel.DataAnnotations.Schema
+
+
+@if (Model.Species.Any()) {
+  <partial name="_Notification"/>
+
+<div id="toolbar">
+    <a class="btn-create" asp-action="Create">Create new</a>
+</div>
+<table class="table table-sm table-striped table-hover">
+    <tr>
+      <th>
+        <div class="column-header">
+            <span class="column-name">
+                <a asp-route-sort="2" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 2 ? !Model.PagingInfo.Ascending : true)">
+                    Name
+                </a>
+            </span>
+        </div>
+      </th>
+      <th>
+        <div class="column-header">
+            <span class="column-name">
+                <a asp-route-sort="3" asp-route-page="@Model.PagingInfo.CurrentPage" asp-route-ascending="@(Model.PagingInfo.Sort == 3 ? !Model.PagingInfo.Ascending : true)">
+                    Nutritional values
+                </a>
+            </span>
+        </div>
+      </th>
+      <th class="actions"></th>
+    </tr>
+
+
+    @foreach (var speciesSingular in Model.Species)
+    {
+      <tr>
+        <td class="text-left">@speciesSingular.Name</td>
+        <td class="text-left">@speciesSingular.NutritionalValues</td>
+        <td class="actions">
+          <a asp-action="Edit"
+             asp-route-id="@speciesSingular.SpeciesId"
+             asp-route-page="@Model.PagingInfo.CurrentPage"
+             asp-route-sort="@Model.PagingInfo.Sort"
+             asp-route-ascending="@Model.PagingInfo.Ascending"
+             class="btn btn-sm edit" title="Edit"><i class="fa-solid fa-pen"></i></a>
+
+          <form asp-action="Delete" method="post"
+                asp-route-page="@Model.PagingInfo.CurrentPage"
+                asp-route-sort="@Model.PagingInfo.Sort"
+                asp-route-ascending="@Model.PagingInfo.Ascending">
+            <input type="hidden" name="id" value="@speciesSingular.SpeciesId" />
+            <button type="submit" class="btn btn-sm btn-danger delete" data-toggle="modal" data-action="delete" data-target="#deleteModal" title="Delete"><i class="fa-solid fa-xmark fa-lg"></i></button>
+          </form>
+        </td>
+      </tr>
+    }
+</table>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Enter page"
+  class="float-end">
+</pager>
+
+} else {
+     <p>No data available.</p>
+}

@@ -1,0 +1,295 @@
+main {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  
+.logo-icon {
+  height: 30px;
+}
+
+.validation-summary-errors { font-weight: bold; color:#a94442;}
+.validation-summary-valid { display: none;}
+.input-validation-error{
+    border-color:red;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000030;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  width: 100%;
+}
+
+#menu {
+  display: flex;
+  align-items: center;
+  background-color: #000030;
+  padding: 0px 20px;
+}
+
+#projectName {
+  color: yellow;
+  margin: 0px 10px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  min-width: 160px;
+  margin: 0px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn .fa-angle-right {
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+table {
+  table-layout: fixed;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  vertical-align: middle !important;
+  padding: 8px !important;
+  color: white;
+  word-wrap: break-word;
+}
+
+th {
+  background-color: #003e79;
+  color: white;
+  font-size: 120%;
+  overflow: hidden;
+}
+
+tr:nth-child(even) {
+  background-color: #5c9bf8;
+}
+tr:nth-child(odd) {
+  background-color: #5182eb;
+}
+
+#toolbar {
+  height: fit-content;
+  margin: 5px 0px;
+  width: 100%;
+
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.btn-create, .btn-reset-filters {
+  background-color: rgb(105, 198, 230);
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+.btn-reset-filters {
+  background-color: rgb(9, 174, 229);
+}
+
+#paging {
+  width: 100%;
+  padding: 0px 20px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 12px;
+  height: 40px;
+}
+
+#paging #current {
+  font-weight: bold;
+  color: #000000;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  text-decoration: none;
+  color: gray !important;
+}
+
+th:last-child, td:last-child {
+  width: 30px;
+  padding: 0px;
+}
+
+th:last-child {
+  background-color: white;
+  border: 0px;
+}
+
+.edit, .delete {
+  padding: 0px;
+  background-color: transparent;
+  border: 0px;
+}
+
+.edit:hover, .delete:hover {
+  background-color: transparent !important;
+  color: #022369;
+}
+
+#modal-form, .modal-field {
+  display: flex;
+  flex-direction: column;
+}
+
+#modal-form .modal-body {
+  gap: 20px;
+}
+
+.modal-field label {
+  margin-bottom: 0px;
+  font-weight: bold;
+  color: white;
+}
+
+.modal .close {
+  color: white;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-header, .modal-header span {
+  background-color: #003e79;
+  color: white;
+  font-size: 110%;
+  font-weight: bold;
+  border: none;
+}
+
+.modal-body {
+  background-color: #5c9bf8;
+  border: none;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: royalblue;
+  border: none;
+}
+
+.modal-footer button {
+  width: 50%;
+}
+
+.required label::after {
+  content: "*";
+  padding-left: 3px;
+  color: red;
+  size: 70%;
+}
+
+.modal-title #title-action {
+  text-transform: capitalize;
+  margin-right: 8px;
+}
+
+.modal-body-delete {
+  color: white;
+  padding: 30px 15px;
+}
+
+#toast-container {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px; /* Adjust the width as needed */
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#toast-container .toast {
+  width: 100%;
+}
+
+.toast .mr-auto::first-letter {
+  text-transform: capitalize;
+}
+
+.sorting-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sorting-icons i, #paging span:not([id^="current"]) {
+  cursor: pointer;
+}
+
+#paging span:not([id^="current"]):not([id^="minGap"]):not([id^="maxGap"]) {
+  color: rgb(21, 21, 203);
+}
+
+#paging span:not([id^="current"]):not([id^="minGap"]):not([id^="maxGap"]):hover {
+  text-decoration: underline;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.selected {
+  color: red;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: black;}

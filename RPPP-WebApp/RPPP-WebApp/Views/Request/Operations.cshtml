@@ -1,0 +1,89 @@
+@model IEnumerable<RPPP_WebApp.ViewModels.OperationViewModel>
+<table class="table table-striped" id="table-order">
+    <thead>
+        <tr>
+           @{
+                Dictionary<string, int> OperationsColumns = new Dictionary<string, int> {
+                    { "Operation Type Name", -1 },
+                    { "Cost", -1},
+                    { "Status", -1},
+                    { "Date", -1},
+                    { "Amount", -1},
+                    { "Plant ID", -1},
+                };
+            }
+            @foreach (var oneColumn in OperationsColumns) {
+                <th>
+                <div class="column-header">
+                    <span class="column-name">
+                        @oneColumn.Key
+                    </span>
+                </div>
+                </th>
+            } 
+            <th class="actions"></th>       
+        </tr>
+    </thead>
+    <tbody>      
+        @foreach(var operation in Model)
+        {           
+            <tr>
+                <td class="text-left col-sm-4">
+                    <input type="hidden" name="Operations.Index" value="@operation.OperationId" />
+                    <select class="form-select form-control" name="Operations[@operation.OperationId].OperationTypeId" asp-for="@operation.OperationTypeId" asp-items="@ViewBag.operationTypes">
+                        <option disabled selected value="">Choose operation type</option>
+                    </select>
+                </td>
+                <td>
+                     <input name="Operations[@operation.OperationId].Cost" class="form-control" asp-for="@operation.Cost"/>   
+                </td>
+                <td>
+                    <input name="Operations[@operation.OperationId].Status" class="form-control" asp-for="@operation.Status" />
+                </td>
+                <td>
+                    <input name="Operations[@operation.OperationId].Date" class="form-control" asp-for="@operation.Date" />
+                </td>
+                <td>
+                    <input name="Operations[@operation.OperationId].Amount" class="form-control" asp-for="@operation.Amount" />
+                </td>
+                <td>
+                    <select class="form-select form-control" name="Operations[@operation.OperationId].PlantId" asp-for="@operation.PlantId" asp-items="@ViewBag.PlantIDs">
+                        <option disabled selected value="@operation.PlantId">Choose plant id</option>
+                    </select>                           
+                </td>
+                <td class="actions">
+                    <button class="btn btn-sm delete-row" title="Remove"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                </td>               
+            </tr>
+        }        
+        <tr>
+            <td class="text-right col-sm-2">
+                <input id="operation-id" type="hidden" readonly="readonly" />
+                <select id="operation-typename" class="form-select form-control" asp-items="@ViewBag.operationTypes">
+                    <option disabled selected value="">Choose operation type name</option>
+                </select>
+            </td>            
+            <td class="text-center col-sm-1">
+                <input id="operation-cost" type="number"/>
+            </td>
+            <td class="text-center col-sm-1 mb-3">
+                <input id="operation-status" type="checkbox"/> 
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="operation-date" type="date"/> 
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="operation-amount" type="number"/> 
+            </td>
+            <td class="text-right col-sm-2">
+                <select id="operation-plantid" class="form-select form-control" asp-items="@ViewBag.plantIDs">
+                    <option disabled selected value="">Choose plant ID</option>
+                </select>
+            </td>            
+            <td class="actions">
+                <button id="operation-add" class="btn btn-sm add-row" title="Add"><i class="fas fa-circle-plus fa-lg"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+

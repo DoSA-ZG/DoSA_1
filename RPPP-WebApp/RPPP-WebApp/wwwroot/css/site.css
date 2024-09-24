@@ -1,0 +1,370 @@
+﻿main {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.logo-icon {
+height: 30px;
+}
+
+.validation-summary-errors { font-weight: bold; color:#a94442;}
+.validation-summary-valid { display: none;}
+.input-validation-error{
+  border-color:red;
+}
+
+/* Dropdown Button */
+.dropbtn {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #000030;
+color: white;
+padding: 16px;
+font-size: 16px;
+border: none;
+width: 100%;
+}
+
+#menu {
+display: flex;
+align-items: center;
+background-color: #000030;
+padding: 0px 20px;
+}
+
+#projectName {
+color: yellow;
+margin: 0px 10px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+position: relative;
+display: inline-block;
+min-width: 170px;
+margin: 0px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+position: absolute;
+background-color: white;
+min-width: 170px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+
+.dropbtn .fa-angle-right {
+color: white;
+}
+
+.hidden {
+display: none !important;
+}
+
+table {
+table-layout: fixed;
+font-family: arial, sans-serif;
+border-collapse: collapse;
+width: 100%;
+}
+
+td, th {
+border: 1px solid #dddddd;
+text-align: center;
+vertical-align: middle !important;
+padding: 8px !important;
+color: white;
+word-wrap: break-word;
+}
+
+th {
+background-color: #003e79;
+color: white;
+font-size: 120%;
+overflow: hidden;
+}
+
+tr:nth-child(even) {
+background-color: #5c9bf8 !important;
+}
+tr:nth-child(odd) {
+background-color: #5182eb !important;
+}
+
+
+#toolbar {
+height: fit-content;
+margin: 5px 0px;
+width: 100%;
+
+display: flex;
+align-content: center;
+justify-content: flex-start;
+gap: 10px;
+}
+
+.btn-create, .btn-clear {
+  background-color: rgb(105, 198, 230);
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+.btn-clear {
+  background-color: rgb(149, 128, 245);
+}
+
+#paging {
+width: 100%;
+padding: 0px 20px;
+
+display: flex;
+align-items: flex-end;
+justify-content: flex-end;
+gap: 12px;
+height: 40px;
+}
+
+th.actions, td.actions {
+width: 30px;
+padding: 0px !important;
+}
+
+th.actions {
+background-color: white;
+border: 0px;
+}
+
+.edit, .delete, .delete-row, .add-row {
+  padding: 0px;
+  background-color: transparent;
+  border: 0px;
+  color: white;
+}
+
+.edit:hover, .delete:hover, .delete-row:hover, .add-row:hover {
+background-color: transparent !important;
+color: #022369;
+}
+
+#modal-form, .modal-field {
+display: flex;
+flex-direction: column;
+}
+
+#modal-form .modal-body {
+gap: 20px;
+}
+
+.modal-field label {
+  margin-bottom: 0px;
+  font-weight: bold;
+  color: white;
+}
+
+.modal .close {
+  color: white;
+  border: none;
+  background-color: inherit;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-header, .modal-header span {
+background-color: #003e79;
+color: white;
+font-size: 110%;
+font-weight: bold;
+border: none;
+}
+
+span.sorting-icons a {
+  display: contents;
+}
+
+span.sorting-icons a.selected i {
+  color: red;
+}
+
+.sorting-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.modal-body {
+  background-color: #5c9bf8;
+  border: none;
+}
+
+.modal-footer {
+display: flex;
+justify-content: space-between;
+background-color: royalblue;
+border: none;
+flex-wrap: nowrap;
+}
+
+.modal-footer button {
+  width: 50%;
+}
+
+.required label::after {
+content: "*";
+padding-left: 3px;
+color: red;
+size: 70%;
+}
+
+.modal-title #title-action {
+text-transform: capitalize;
+margin-right: 8px;
+}
+
+.modal-body-delete {
+color: white;
+padding: 30px 15px;
+}
+
+#toast-container {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px; /* Adjust the width as needed */
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#toast-container .toast {
+width: 100%;
+}
+
+.toast .mr-auto::first-letter {
+text-transform: capitalize;
+}
+
+
+.column-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+gap: 10px;
+}
+
+.selected a {
+ color: darkblue !important;
+}
+
+﻿main {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.logo-icon {
+  height: 30px;
+}
+
+.validation-summary-errors { font-weight: bold; color:#a94442;}
+.validation-summary-valid { display: none;}
+.input-validation-error{
+    border-color:red;
+}
+
+.pagination {
+  display: flex;
+  justify-content: right;
+  gap: 12px;
+}
+
+#alertMessage {
+  position: fixed;
+  left: 50%;
+  bottom: 0%;
+  transform: translateX(-50%);
+}
+
+.alter-fields {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  column-gap: 40px;
+
+  margin-bottom: 30px;
+}
+
+.alter-fields .field-box {
+  flex: calc(50% - 40px);
+  margin-bottom: 0px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.alter-fields .field-box .field-error {
+  word-break: break-all;
+}
+
+.alter-fields .field-box .field-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.alter-fields .field-box .field-data > label {
+  margin-bottom: 0;
+}
+
+.alter-fields .field-box .field-data > .field {
+  width: calc(70% - 10px) !important;
+}
+.alter-fields .field-box .field-data > label {
+  width: calc(30% - 10px) !important;
+  word-break: break-all;
+}
+
+.elem-header {
+  margin-top: 20px;
+  
+  display: flex;
+  column-gap: 20px;
+}
+
+.elem-header .action-buttons {
+  display: inline;
+}
+
+.edit-md {
+  height: fit-content;
+  padding: 0px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: black;}

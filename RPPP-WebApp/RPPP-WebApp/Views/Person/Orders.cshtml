@@ -1,0 +1,46 @@
+@model IEnumerable<RPPP_WebApp.ViewModels.OrderViewModel>
+<table class="table table-striped" id="table-order">
+    <thead>
+        <tr>
+           @{
+                Dictionary<string, int> OrderColumns = new Dictionary<string, int> {
+                    { "Date", -1 }
+                };
+            }
+            @foreach (var oneColumn in OrderColumns) {
+                <th>
+                <div class="column-header">
+                    <span class="column-name">
+                        @oneColumn.Key
+                    </span>
+                </div>
+                </th>
+            } 
+            <th class="actions"></th>       
+        </tr>
+    </thead>
+    <tbody>      
+        @foreach(var order in Model)
+        {           
+            <tr>
+                <td class="text-left col-sm-1">
+                    <input type="hidden" name="Order.Index" value="@order.OrderId" />
+                    <input type="hidden" name="Order[@order.OrderId].OrderId" value="@order.OrderId" />
+                    <input type="date" name="Order[@order.OrderId].Date" value="@order.Date" />            
+                </td>
+                <td class="actions">
+                    <button class="btn btn-sm delete-row" title="Remove"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                </td>               
+            </tr>
+        }        
+        <tr>
+            <td>
+                <input id="order-id" type="hidden" readonly="readonly" />
+                <input id="order-date" type="date" data-autocomplete="orders" />                
+            </td>
+            <td class="actions">
+                <button id="order-add" class="btn btn-sm add-row" title="Add"><i class="fas fa-circle-plus fa-lg"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

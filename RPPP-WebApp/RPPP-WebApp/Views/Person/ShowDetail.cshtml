@@ -1,0 +1,95 @@
+@model RPPP_WebApp.ViewModels.PersonViewModel
+
+  @{
+    Dictionary<string, int> PersonColumns = new Dictionary<string, int> {
+        { "Id", -1},
+        { "Name", -1 },
+        { "Role Name", -1 },
+        { "Phone Number", -1 },
+        { "Email", -1 },
+        { "Address City", -1 },
+        { "Address Postal Code", -1 },
+        { "Address Street", -1 },
+        { "Address Number", -1 },
+        { "Order IDs", -1 }
+    };
+  }
+  <div class="elem-header">
+    <h1>Person</h1>
+    <a class="btn edit-md" asp-action="Edit" asp-route-id="@Model.PersonId" title="Edit"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>
+  </div>
+
+  <table class="table table-sm table-striped table-hover">
+    <thead>
+      <tr>
+        @foreach (var oneColumn in PersonColumns) {
+          <th>
+            <div class="column-header">
+                <span class="column-name">
+                    @oneColumn.Key
+                </span>
+            </div>
+          </th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+       @{
+        var plotStr = string.Join(", ", Model.Orders.Select(i => i.OrderId));
+        }
+        <tr>
+          <td class="text-left">@Model.PersonId</td>
+          <td class="text-left">@Model.Name</td>
+          <td class="text-left">@Model.RoleName</td>
+          <td class="text-left">@Model.PhoneNumber</td>
+          <td class="text-left">@Model.Email</td>
+          <td class="text-left">@Model.Address_City</td>
+          <td class="text-left">@Model.Address_PostalCode</td>
+          <td class="text-left">@Model.Address_Street</td>
+          <td class="text-left">@Model.Address_Number</td>
+          <td class="text-left">@(plotStr.Length > 0 ? plotStr : "-")</td>
+        </tr>
+    </tbody>
+  </table>
+
+
+  @{
+    Dictionary<string, int> OrderColumns = new Dictionary<string, int> {
+        { "Date", -1 },
+        { "Order ID", -1 },
+        { "Customer ID", -1 }
+    };
+  }
+
+  <h1>Orders</h1>
+  @if (Model.Orders.Count() > 0) {
+    <table class="table table-sm table-striped table-hover">
+      <thead>
+        <tr>
+          @foreach (var oneColumn in OrderColumns) {
+            <th>
+              <div class="column-header">
+                  <span class="column-name">
+                      @oneColumn.Key
+                  </span>
+              </div>
+            </th>
+          }
+        </tr>
+      </thead>
+
+      <tbody>
+        @foreach (var order in Model.Orders)
+        {
+          <tr>
+            <td class="text-left">@order.Date</td>
+            <td class="text-left">@order.OrderId</td>
+            <td class="text-left">@order.CustomerId</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } else {
+      <p>No data available.</p>
+  }

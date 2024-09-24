@@ -1,0 +1,48 @@
+@model RPPP_WebApp.ViewModels.PlotViewModel
+
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="Size" class="form-label"></label>
+    <input  min="1" asp-for="Size" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="Size" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="LightIntensity" class="form-label"></label>
+    <input  min="1" asp-for="LightIntensity" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="LightIntensity" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="CoordX" class="form-label"></label>
+    <input asp-for="CoordX" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="CoordX" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="CoordY" class="form-label"></label>
+    <input asp-for="CoordY" class="form-control field" />
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="CoordY" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="SoilId" class="form-label"></label>
+    <select class="form-select field" asp-for="SoilId" asp-items="ViewBag.SoilTypes">
+      <option disabled selected value="">Choose a type of soil</option>
+    </select>
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="SoilId" class="text-danger"></span></div>
+</div>
+<div class="mb-3 field-box">
+  <div class="field-data">
+    <label asp-for="OwnerId" class="form-label"></label>
+    <select class="form-select field" asp-for="OwnerId" asp-items="ViewBag.Owner">
+      <option disabled selected value="">Choose an owner</option>
+    </select>
+  </div>
+  <div class="form-text field-error"><span asp-validation-for="OwnerId" class="text-danger"></span></div>
+</div>

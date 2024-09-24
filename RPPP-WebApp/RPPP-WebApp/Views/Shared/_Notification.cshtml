@@ -1,0 +1,14 @@
+@if (TempData.ContainsKey("Message")) {
+    <div id="alertMessage" class="alert @(TempData["ErrorOccurred"] as bool? == true ? "alert-danger" : "alert-success")" role="alert">
+        @TempData["Message"]
+    </div>
+
+    <script>
+        setTimeout(function () {
+            var alertMessage = document.getElementById('alertMessage');
+            if (alertMessage) {
+                alertMessage.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+}

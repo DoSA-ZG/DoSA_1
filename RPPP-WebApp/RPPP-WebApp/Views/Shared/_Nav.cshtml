@@ -1,0 +1,49 @@
+<nav id="menu">
+  <a asp-action="Index" asp-controller="Home">
+    <div id="projectName">
+      RPPP12
+    </div>
+  </a>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">Student 1</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <div class="dropdown-content hidden">
+            <a class="nav-link" asp-action="Index" asp-controller="Plots">Plots</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">Student 2</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <div class="dropdown-content hidden">
+            <a asp-action="Index" asp-controller="Request">Requests</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">Student 3</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+
+        <div class="dropdown-content hidden">
+            <a asp-action="Index" asp-controller="Person">People</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropbtn">
+            <span class="btn-name">Student 4</span>
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+        <div class="dropdown-content hidden">
+            <a asp-action="Index" asp-controller="Species">Species</a>
+        </div>
+    </div>
+     <div class="dropdown">
+        <div class="dropbtn">
+            <a href="/rppp/12/docs">Swagger</a>
+        </div>
+    </div>
+  </nav>
