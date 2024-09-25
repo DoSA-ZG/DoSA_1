@@ -5,52 +5,24 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-
 jobs:
   build:
     name: Build and analyze
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
+    env:
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v4
         with:
-          java-version: 17
-          distribution: 'zulu'
-
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
-
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '8.0'  # Specify your project's .NET version
-
-      - name: Install SonarCloud scanner
-        run: dotnet tool install --global dotnet-sonarscanner
-        shell: powershell
-
-      - name: Restore NuGet packages
-        run: dotnet restore Airport.sln
-        shell: powershell
-
-      - name: Begin SonarCloud analysis
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Install sonar-scanner and build-wrapper
+        uses: SonarSource/sonarcloud-github-c-cpp@v3
+      - name: Run build-wrapper
+        run: |
+          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} <insert_your_clean_build_command>
+      - name: Run sonar-scanner
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: dotnet-sonarscanner begin /k:"DoSA-ZG_DoSA_1" /o:"dosa-zg" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        shell: powershell
-
-      - name: Build the project
-        run: msbuild /t:Rebuild /p:Configuration=Release Airport.sln
-        shell: powershell
-
-      - name: End SonarCloud analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-        shell: powershell
+        run: |
+          sonar-scanner --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
