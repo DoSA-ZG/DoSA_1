@@ -35,7 +35,7 @@ jobs:
         shell: powershell
 
       - name: Restore NuGet packages
-        run: dotnet restore RPPP-WebApp.sln
+        run: dotnet restore RPPP-WebApp/RPPP-WebApp.sln
         shell: powershell
 
       - name: Begin SonarCloud analysis
@@ -46,7 +46,7 @@ jobs:
         shell: powershell
 
       - name: Build the project
-        run: msbuild /t:Rebuild /p:Configuration=Release RPPP-WebApp.sln
+        run: msbuild /t:Rebuild /p:Configuration=Release RPPP-WebApp/RPPP-WebApp.sln
         shell: powershell
 
       - name: End SonarCloud analysis
